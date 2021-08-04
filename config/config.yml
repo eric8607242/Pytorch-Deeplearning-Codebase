@@ -1,0 +1,48 @@
+agent:
+    main_agent: "TrainingAgnet"
+    model_agent: "Model"
+    criterion_agent: "LabelSmoothingCrossEntropy"
+
+train:
+    resume: False
+    random_seed: 1234
+    device: "cuda"
+    ngpu: 1
+    epochs: 150
+
+model:
+    classes: 100
+    bn_track_running_stats: True
+    bn_momentum: 0.1
+
+criterion:
+
+dataset:
+    dataset: "data"
+    dataset_path: "./data/"
+    input_size: 32
+
+    batch_size: 128
+    num_workers: 1
+    train_portion: 1
+
+optim:
+    optimizer: "sgd"
+    lr: 0.045
+    weight_decay: 0.0004
+    momentum: 0.9
+    alpha: 0.9
+    beta: 0.99
+
+    scheduler: "cosine"
+    decay_step: 10
+    decay_ratio: 0.1
+
+logs_path:
+    logger_path: "./logs/"
+    writer_path: "./logs/tb/"
+
+experiment_path:
+    resume_path: "./best_checkpoint.pth"
+    checkpoint_root_path: "./checkpoints/"
+    best_checkpoint_path: "./best_checkpoint.pth"
