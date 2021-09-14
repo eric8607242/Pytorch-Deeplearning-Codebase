@@ -8,7 +8,7 @@ import torch
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 from torch.utils.data.sampler import SubsetRandomSampler
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset, Subset
 
 def get_data_dataloader(dataflow_config, *args, **kwargs):
     dataset_path = dataflow_config["dataset_path"]
@@ -16,6 +16,26 @@ def get_data_dataloader(dataflow_config, *args, **kwargs):
     batch_size = dataflow_config["batch_size"]
     num_workers = dataflow_config["num_workers"]
     train_portion = dataflow_config["train_portion"]
+
+    train_dataset = None
+    val_dataset = None
+    test_dataset = None
+
+    train_loader = DataLoader(train_loader, 
+                        batch_size=batch_size,
+                        shuffle=True,
+                        num_workers=num_workers,
+                        pin_memory=True)
+    val_loader = DataLoader(val_loader, 
+                        batch_size=batch_size,
+                        shuffle=True,
+                        num_workers=num_workers,
+                        pin_memory=True)
+    test_loader = DataLoader(test_loader, 
+                        batch_size=batch_size,
+                        shuffle=True,
+                        num_workers=num_workers,
+                        pin_memory=True)
 
     return train_loader, val_loader, test_loader
 

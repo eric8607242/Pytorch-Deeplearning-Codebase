@@ -1,5 +1,5 @@
 agent:
-    main_agent: "TrainingAgnet"
+    main_agent: "TrainingAgent"
     model_agent: "Model"
     criterion_agent: "LabelSmoothingCrossEntropy"
 

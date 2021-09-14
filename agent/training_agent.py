@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 import torch
 import torch.nn as nn
 
-from utils import get_logger, get_writer, set_random_seed, get_optimizer, get_lr_scheduler, resume_checkpoint, AverageMeter, save
+from utils import get_logger, get_writer, set_random_seed, get_optimizer, get_lr_scheduler, resume_checkpoint, AverageMeter, save, LoggingTracker
 from criterion import get_criterion
 from dataflow import get_dataloader
 from model import get_model_class
@@ -43,7 +43,8 @@ class TrainingAgent:
         self.epochs = config["train"]["epochs"]
         self.start_epochs = 0
 
-        self.config = config
+        self.logging_tracker = LoggingTracker(self.logger, self.writer, self.config, title)
+
         
     def fit(self):
         """
