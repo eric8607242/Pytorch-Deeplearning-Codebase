@@ -1,7 +1,7 @@
 agent:
     main_agent: "TrainingAgent"
     model_agent: "Model"
-    criterion_agent: "LabelSmoothingCrossEntropy"
+    criterion_agent: "CrossEntropyLoss"
 
 train:
     resume: False
