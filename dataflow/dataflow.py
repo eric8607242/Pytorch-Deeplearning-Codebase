@@ -21,17 +21,17 @@ def get_data_dataloader(dataflow_config, *args, **kwargs):
     val_dataset = None
     test_dataset = None
 
-    train_loader = DataLoader(train_loader, 
+    train_loader = DataLoader(train_dataset, 
                         batch_size=batch_size,
                         shuffle=True,
                         num_workers=num_workers,
                         pin_memory=True)
-    val_loader = DataLoader(val_loader, 
+    val_loader = DataLoader(val_dataset, 
                         batch_size=batch_size,
                         shuffle=True,
                         num_workers=num_workers,
                         pin_memory=True)
-    test_loader = DataLoader(test_loader, 
+    test_loader = DataLoader(test_dataset, 
                         batch_size=batch_size,
                         shuffle=True,
                         num_workers=num_workers,
