@@ -4,6 +4,7 @@ import logging
 from datetime import datetime
 
 import numpy as np
+import ujson
 
 import torch
 import torch.nn as nn
@@ -169,3 +170,20 @@ def save(
 def min_max_normalize(min_value, max_value, value):
     new_value = (value - min_value) / (max_value - min_value)
     return new_value
+
+def load_json(data_path):
+    with open(data_path, "r") as f:
+        data = ujson.load(f)
+    return data
+
+def save_json(data, data_path):
+    with open(data_path, "w") as f:
+        ujson.dump(data, f)
+
+def save_npy(data, data_path):
+    with open(data_path, "wb") as f:
+        np.save(f, data)
+
+def load_npy(data_path):
+    data = np.load(data_path)
+    return data
